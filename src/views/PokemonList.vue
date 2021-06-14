@@ -108,6 +108,7 @@ export default {
   },
 
   computed: {
+    // TODO Importer les filtres du store ou alors ici?
     ...mapGetters("pokemon", [
       "pokemonList",
       "pokemonListFilter",

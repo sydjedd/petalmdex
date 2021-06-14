@@ -15,6 +15,7 @@ export default {
     pokemonList(state) {
       return state.pokemonList;
     },
+    // TODO Garder les filtres dans le store ou alors dans le commposant?
     pokemonListFilter(state) {
       return state.pokemonList.filter(
         (pokemon) =>
