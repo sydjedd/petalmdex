@@ -68,7 +68,7 @@ export default {
   async created() {
     await this.$store.dispatch("pokemon/updatePokemon", this.$route.params.id);
     // eslint-disable-next-line
-    this.$store.dispatch("common/updateTitle", this.pokemon.name[0].toUpperCase() + this.pokemon.name.slice(1).toLowerCase());
+    this.$store.dispatch("common/setTitle", this.pokemon.name[0].toUpperCase() + this.pokemon.name.slice(1).toLowerCase());
   },
 
   mounted() {

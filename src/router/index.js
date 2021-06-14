@@ -20,7 +20,7 @@ const router = new VueRouter({
 });
 
 router.afterEach((to) => {
-  store.dispatch("common/updateCurrentRoute", to.path);
+  store.dispatch("common/setCurrentRoute", to.path);
 });
 
 export default router;

@@ -146,7 +146,7 @@ export default {
 
   async created() {
     this.$store.dispatch("pokemon/updatePokemonList");
-    this.$store.dispatch("common/updateTitle", "Liste des Pokémons");
+    this.$store.dispatch("common/setTitle", "Liste des Pokémons");
   },
 
   mounted() {

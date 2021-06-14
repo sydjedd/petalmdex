@@ -10,21 +10,21 @@ export default {
   },
 
   mutations: {
-    UPDATE_TITLE(state, newValue) {
+    SET_TITLE(state, newValue) {
       state.title = newValue;
     },
-    UPDATE_CURRENT_ROUTE(state, newValue) {
+    SET_CURRENT_ROUTE(state, newValue) {
       localStorage.setItem("currentRoute", newValue);
       state.currentRoute = newValue;
     },
   },
 
   actions: {
-    updateTitle({ commit }, newValue) {
-      commit("UPDATE_TITLE", newValue);
+    setTitle({ commit }, newValue) {
+      commit("SET_TITLE", newValue);
     },
-    updateCurrentRoute({ commit }, newValue) {
-      commit("UPDATE_CURRENT_ROUTE", newValue);
+    setCurrentRoute({ commit }, newValue) {
+      commit("SET_CURRENT_ROUTE", newValue);
     },
   },
 };
