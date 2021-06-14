@@ -95,7 +95,6 @@ export default {
 
   actions: {
     async updatePokemon({ state, commit }) {
-      console.log(state.pokemon);
       if (!state.pokemon.length) {
         const data = await pokemonService.getAll();
         if (!data) {
@@ -108,7 +107,6 @@ export default {
       this.dispatch("pokemon/setPokemonLoading", true);
       await commit("UPDATE_POKEMON_CURRENT", id);
       if (!Object.keys(state.pokemon[id].detail).length) {
-        console.log("Downloading: " + id);
         const data = await pokemonService.getById(id);
         if (!data) {
           return false;

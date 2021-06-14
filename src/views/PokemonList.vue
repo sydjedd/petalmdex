@@ -25,8 +25,8 @@
 
         <br />
 
-        <span v-if="pokemonFilter.length < pokemon.length">
-          filtrés sur {{ pokemon.length }}
+        <span v-if="pokemonFilter.length < pokemonTotal">
+          filtrés sur {{ pokemonTotal }}
         </span>
       </div>
 
@@ -40,7 +40,7 @@
     </v-toolbar>
 
     <v-progress-linear
-      v-if="pokemon.length <= 0"
+      v-if="pokemonTotal <= 0"
       indeterminate
       rounded
       height="4"
@@ -48,7 +48,7 @@
     ></v-progress-linear>
 
     <v-alert
-      v-if="pokemonFilterSlice.length <= 0 && pokemon.length > 0"
+      v-if="pokemonFilterSlice.length <= 0 && pokemonTotal > 0"
       dense
       border="left"
       type="info"
@@ -115,6 +115,13 @@ export default {
       "pokemonFilterSlice",
       "totalPages",
     ]),
+    pokemonTotal() {
+      let count = 0;
+      this.pokemon.forEach(() => {
+        count++;
+      });
+      return count;
+    },
     /* eslint-disable */
     filter: {
       get() { return this.$store.state.pokemon.filter; },
