@@ -3,12 +3,15 @@ import http from "@/helpers/http.js";
 const baseURL = process.env.VUE_APP_API || "";
 
 async function getAll() {
-  const pokemon = await http.get(`${baseURL}/pokemon?limit=-1`);
   const pattern = `${baseURL}/pokemon/`;
+  const pokemon = await http.get(`${baseURL}/pokemon?limit=-1`);
+  let newPokemon = [];
   pokemon.results.forEach((element) => {
     element.id = element.url.replace(/\/$/i, "").replace(pattern, "");
+    element.detail = {};
+    newPokemon[element.id] = element;
   });
-  return pokemon.results;
+  return newPokemon;
 }
 
 async function getById(id) {

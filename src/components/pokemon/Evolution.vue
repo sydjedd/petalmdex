@@ -95,7 +95,9 @@ export default {
 
   methods: {
     async pokemonDetail(id) {
-      await this.$store.dispatch("pokemon/updatePokemon", id);
+      this.$router
+        .push({ name: "Pokémon détail", params: { id: id } })
+        .catch(() => {});
     },
   },
 };

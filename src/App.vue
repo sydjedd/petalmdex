@@ -39,7 +39,7 @@
 
     <v-main class="grey lighten-3">
       <v-container fluid fill-heigh>
-        <router-view></router-view>
+        <router-view :key="$route.path"></router-view>
       </v-container>
     </v-main>
 
@@ -56,7 +56,7 @@ export default {
       drawer: true,
       items: [
         /* eslint-disable prettier/prettier */
-        { title: "Pokémons", icon: "mdi-view-list", link: "/PokemonList" },
+        { title: "Liste des Pokémons", icon: "mdi-view-list", link: "/Pokemon" },
         /* eslint-enable prettier/prettier */
       ],
     };

@@ -16,17 +16,17 @@
         <span>
           {{ (page - 1) * limit + 1 }} à
           {{
-            page * limit > pokemonListFilter.length
-              ? pokemonListFilter.length
+            page * limit > pokemonFilter.length
+              ? pokemonFilter.length
               : page * limit
           }}
-          sur {{ pokemonListFilter.length }} Pokémons
+          sur {{ pokemonFilter.length }} Pokémons
         </span>
 
         <br />
 
-        <span v-if="pokemonListFilter.length < pokemonList.length">
-          filtrés sur {{ pokemonList.length }}
+        <span v-if="pokemonFilter.length < pokemon.length">
+          filtrés sur {{ pokemon.length }}
         </span>
       </div>
 
@@ -40,7 +40,7 @@
     </v-toolbar>
 
     <v-progress-linear
-      v-if="pokemonList.length <= 0"
+      v-if="pokemon.length <= 0"
       indeterminate
       rounded
       height="4"
@@ -48,7 +48,7 @@
     ></v-progress-linear>
 
     <v-alert
-      v-if="pokemonListFilterSlice.length <= 0 && pokemonList.length > 0"
+      v-if="pokemonFilterSlice.length <= 0 && pokemon.length > 0"
       dense
       border="left"
       type="info"
@@ -64,14 +64,14 @@
       align="center"
       justify="center"
     >
-      <v-col v-for="pokemon in pokemonListFilterSlice" :key="pokemon.id">
+      <v-col v-for="pokemon in pokemonFilterSlice" :key="pokemon.id">
         <v-hover v-slot="{ hover }">
           <v-card
             :elevation="hover ? 24 : 2"
             class="ma-2 pa-2"
             height="170"
             width="160"
-            @click.stop="pokemonDetail(pokemon.id)"
+            @click.stop="pokemonDetail(pokemon.id, pokemon.index)"
           >
             <v-fade-transition>
               <v-overlay v-if="hover" absolute></v-overlay>
@@ -110,9 +110,9 @@ export default {
   computed: {
     // TODO Importer les filtres du store ou alors ici?
     ...mapGetters("pokemon", [
-      "pokemonList",
-      "pokemonListFilter",
-      "pokemonListFilterSlice",
+      "pokemon",
+      "pokemonFilter",
+      "pokemonFilterSlice",
       "totalPages",
     ]),
     /* eslint-disable */
@@ -139,13 +139,12 @@ export default {
     },
     async pokemonDetail(id) {
       // TODO mieux gerer les url vide dans image sans vider le pokemon courant
-      this.$store.dispatch("pokemon/removePokemon");
       this.$router.push(`/pokemon/${id}`);
     },
   },
 
   async created() {
-    this.$store.dispatch("pokemon/updatePokemonList");
+    this.$store.dispatch("pokemon/updatePokemon");
     this.$store.dispatch("common/setTitle", "Liste des Pokémons");
   },
 

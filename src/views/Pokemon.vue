@@ -3,39 +3,45 @@
     <v-col cols="12" md="4" sm="12" xs="12">
       <Profil
         :loading="pokemonLoading"
-        :id="pokemon.id"
-        :name="pokemon.name"
-        :types="pokemon.types"
+        :id="pokemonDetail.id"
+        :name="pokemonDetail.name"
+        :types="pokemonDetail.types"
       />
     </v-col>
 
     <v-col cols="12" md="4" sm="6" xs="12">
       <Information
         :loading="pokemonLoading"
-        :id="pokemon.id"
-        :name="pokemon.name"
-        :height="pokemon.height"
-        :weight="pokemon.weight"
-        :experience="pokemon.base_experience"
-        :order="pokemon.order"
-        :abilities="pokemon.abilities"
+        :id="pokemonDetail.id"
+        :name="pokemonDetail.name"
+        :height="pokemonDetail.height"
+        :weight="pokemonDetail.weight"
+        :experience="pokemonDetail.base_experience"
+        :order="pokemonDetail.order"
+        :abilities="pokemonDetail.abilities"
       />
     </v-col>
 
     <v-col cols="12" md="4" sm="6" xs="12">
-      <Statistique :loading="pokemonLoading" :statistique="pokemon.stats" />
+      <Statistique
+        :loading="pokemonLoading"
+        :statistique="pokemonDetail.stats"
+      />
     </v-col>
 
     <v-col cols="12">
-      <Evolution :loading="pokemonLoading" :evolution="pokemon.evolution" />
+      <Evolution
+        :loading="pokemonLoading"
+        :evolution="pokemonDetail.evolution"
+      />
     </v-col>
 
     <v-col cols="12">
-      <Attaque :loading="pokemonLoading" :moves="pokemon.moves" />
+      <Attaque :loading="pokemonLoading" :moves="pokemonDetail.moves" />
     </v-col>
 
     <v-col cols="12">
-      <Sprite :loading="pokemonLoading" :sprites="pokemon.sprites" />
+      <Sprite :loading="pokemonLoading" :sprites="pokemonDetail.sprites" />
     </v-col>
   </v-row>
 </template>
@@ -62,13 +68,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters("pokemon", ["pokemon", "pokemonLoading"]),
+    ...mapGetters("pokemon", ["pokemonDetail", "pokemonLoading"]),
   },
 
   async created() {
-    await this.$store.dispatch("pokemon/updatePokemon", this.$route.params.id);
-    // eslint-disable-next-line
-    this.$store.dispatch("common/setTitle", this.pokemon.name[0].toUpperCase() + this.pokemon.name.slice(1).toLowerCase());
+    /* eslint-disable */
+    await this.$store.dispatch("pokemon/updatePokemonDetail", this.$route.params.id);
+    this.$store.dispatch("common/setTitle", this.pokemonDetail.name[0].toUpperCase() + this.pokemonDetail.name.slice(1).toLowerCase());
+    /* eslint-enable */
   },
 
   mounted() {
