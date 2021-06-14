@@ -5,6 +5,18 @@
     </v-card-subtitle>
 
     <v-row>
+      <v-col v-if="!evolves || !evolves.length">
+        <v-skeleton-loader type="list-item"></v-skeleton-loader>
+      </v-col>
+
+      <v-col v-if="!evolves || !evolves.length">
+        <v-skeleton-loader type="list-item"></v-skeleton-loader>
+      </v-col>
+
+      <v-col v-if="!evolves || !evolves.length">
+        <v-skeleton-loader type="list-item"></v-skeleton-loader>
+      </v-col>
+
       <v-col
         class="text-center"
         v-for="(element, index) in evolves"
