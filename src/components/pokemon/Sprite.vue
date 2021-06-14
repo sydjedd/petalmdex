@@ -56,12 +56,6 @@
   </v-card>
 </template>
 
-<style scoped>
-.image {
-  width: 150px;
-}
-</style>
-
 <script>
 import PokemonImage from "@/components/pokemon/PokemonImage";
 
