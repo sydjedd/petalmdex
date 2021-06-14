@@ -94,7 +94,6 @@ export default {
 
   methods: {
     async pokemonDetail(id) {
-      this.$store.dispatch("pokemon/removePokemon");
       await this.$store.dispatch("pokemon/updatePokemon", id);
     },
   },
