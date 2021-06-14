@@ -25,6 +25,10 @@
     </v-col>
 
     <v-col cols="12">
+      <Attaque :moves="pokemon.moves" />
+    </v-col>
+
+    <v-col cols="12">
       <Sprite :sprites="pokemon.sprites" />
     </v-col>
   </v-row>
@@ -34,8 +38,9 @@
 import Profil from "@/components/pokemon/Profil";
 import Information from "@/components/pokemon/Information";
 import Statistique from "@/components/pokemon/Statistique";
-import Sprite from "@/components/pokemon/Sprite";
 import Evolution from "@/components/pokemon/Evolution";
+import Attaque from "@/components/pokemon/Attaque";
+import Sprite from "@/components/pokemon/Sprite";
 import { mapGetters } from "vuex";
 
 export default {
@@ -45,8 +50,9 @@ export default {
     Profil,
     Information,
     Statistique,
-    Sprite,
+    Attaque,
     Evolution,
+    Sprite,
   },
 
   computed: {
