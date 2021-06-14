@@ -1,32 +1,69 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-navigation-drawer v-model="drawer" app>
+      <v-img
+        src="https://www.petalmd.com/hubfs/_PetalMD_Sept2018/Logos/logo-PetalMD.svg"
+        class="mx-10 my-3"
+      ></v-img>
+
+      <v-list dense nav>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              {{ this.$store.state.common.appName }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list dense nav>
+        <!-- eslint-disable-next-line -->
+        <v-list-item v-for="(item, index) in items" :key="index" :to="item.link" link router>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar color="primary" dense dark app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>{{ title }}</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main class="grey lighten-3">
+      <v-container fluid fill-heigh>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+
+    <!-- v-footer app></v-footer -->
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "App",
 
-#nav {
-  padding: 30px;
-}
+  data() {
+    return {
+      drawer: true,
+      items: [
+        /* eslint-disable prettier/prettier */
+        { title: "Pokémons", icon: "mdi-view-list", link: "/PokemonList" },
+        /* eslint-enable prettier/prettier */
+      ],
+    };
+  },
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  computed: {
+    title() { return this.$store.state.common.title; },
+  },
+};
+</script>

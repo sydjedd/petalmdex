@@ -1,24 +1,47 @@
-# pokedex
+# PetalMDex
 
-## Project setup
+PokéDex pour PetalMD
+
+## Pré-requis
+
+* Node.js
+* Yarn
+* Vue CLI
+
+## Cloner le projet
+
+```bash
+git clone https://github.com/sydjedd/petalmdex.git
+cd petalmdex
 ```
+## Installation
+
+### Installer les dépendances
+
+```bash
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+## Lancer l'application en développement
+
+> Compilation et hot-reloads
+
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+## Lancer l'application en production
+
+> Compiler et minifier
+
 ```
 yarn build
 ```
 
-### Lints and fixes files
+## Extra
+
+### Linter et fixer les fichiers
+
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
