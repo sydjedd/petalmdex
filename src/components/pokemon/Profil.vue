@@ -1,6 +1,11 @@
 <template>
-  <v-card height="400" min-width="260">
-    <v-card-title class="text-uppercase text-center d-block">
+  <v-card height="410" min-width="260">
+    <v-skeleton-loader
+      v-if="!id"
+      type="list-item, image, list-item@3"
+    ></v-skeleton-loader>
+
+    <v-card-title v-if="id" class="text-uppercase text-center d-block">
       #{{ id }}
     </v-card-title>
 

@@ -1,11 +1,16 @@
 <template>
-  <v-card height="400" min-width="260">
+  <v-card height="410" min-width="260">
     <v-card-subtitle class="text-uppercase text-center d-block">
       Informations
     </v-card-subtitle>
 
     <v-card-text>
-      <v-simple-table >
+      <v-skeleton-loader
+        v-if="!id"
+        type="list-item, divider, list-item, divider, list-item, divider, list-item, divider, list-item, divider, list-item, divider, list-item"
+      ></v-skeleton-loader>
+
+      <v-simple-table v-if="id">
         <template v-slot:default>
           <tbody>
             <tr>
