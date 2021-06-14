@@ -12,7 +12,7 @@
 
       <v-spacer></v-spacer>
 
-        <!-- {{ ( ( page - 1 ) * limit ) + 1 }} à {{ page * totalPages }} sur  Pokémons -->
+      <!-- {{ ( ( page - 1 ) * limit ) + 1 }} à {{ page * totalPages }} sur  Pokémons -->
 
       <v-spacer></v-spacer>
 
@@ -28,15 +28,19 @@
       indeterminate
       rounded
       height="4"
-      class="mt-2">
+      class="mt-2"
     ></v-progress-linear>
 
     <v-alert
-      v-if="pokemonList.length <= 0 && this.$store.state.pokemon.pokemonList.length > 0"
+      v-if="
+        pokemonList.length <= 0 &&
+        this.$store.state.pokemon.pokemonList.length > 0
+      "
       dense
       border="left"
       type="info"
-      class="mt-2">
+      class="mt-2"
+    >
       Aucun Pokémon n'a été trouvé...
     </v-alert>
 
@@ -47,10 +51,7 @@
       align="center"
       justify="center"
     >
-      <v-col
-        v-for="pokemon in pokemonList"
-        :key="pokemon.id"
-      >
+      <v-col v-for="pokemon in pokemonList" :key="pokemon.id">
         <v-hover v-slot="{ hover }">
           <v-card
             :elevation="hover ? 24 : 2"
@@ -60,10 +61,7 @@
             @click.stop="pokemonDetail(pokemon.id)"
           >
             <v-fade-transition>
-              <v-overlay
-                v-if="hover"
-                absolute
-              ></v-overlay>
+              <v-overlay v-if="hover" absolute></v-overlay>
             </v-fade-transition>
 
             <span class="d-block text-overline text-center">
@@ -98,6 +96,7 @@ export default {
 
   computed: {
     ...mapGetters("pokemon", ["pokemonList", "totalPages"]),
+    /* eslint-disable */
     filter: {
       get() { return this.$store.state.pokemon.filter; },
       set(newValue) { return this.$store.dispatch("pokemon/setFilter", newValue); },
@@ -110,14 +109,14 @@ export default {
       get() { return this.$store.state.pokemon.limit; },
       set(newValue) { return this.$store.dispatch("pokemon/setLimit", newValue); },
     },
+    /* eslint-enable */
   },
 
   methods: {
-    onResize () {
+    onResize() {
       this.limit =
-          Math.floor((this.$refs.div.clientWidth) / 176)
-        * Math.ceil((document.documentElement.clientHeight - 112) / 186)
-      ;
+        Math.floor(this.$refs.div.clientWidth / 176) *
+        Math.ceil((document.documentElement.clientHeight - 112) / 186);
     },
     async pokemonDetail(id) {
       // TODO mieux gerer les url vide dans image sans vider le pokemon courant

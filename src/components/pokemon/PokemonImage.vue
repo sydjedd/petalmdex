@@ -31,9 +31,15 @@ export default {
 
   computed: {
     finalUrl() {
-      let url = (this.url || this.url === '') ? this.url : (this.id ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.id}.png` : null);
+      // TODO Ameliorer la gestion des id url null / vide
+      /* eslint-disable */
+      let url =
+        (this.url || this.url === '') ? this.url :
+        (this.id ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.id}.png` : null)
+      ;
+      /* eslint-enable */
       return url;
-    }
+    },
   },
 };
 </script>

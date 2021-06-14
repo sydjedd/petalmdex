@@ -5,10 +5,7 @@
     </v-card-subtitle>
 
     <v-row>
-      <v-col
-        v-for="(element, index) in evolves"
-        :key="index"
-      >
+      <v-col v-for="(element, index) in evolves" :key="index">
         <v-hover v-slot="{ hover }">
           <v-card
             absolute
@@ -16,19 +13,14 @@
             @click.stop="pokemonDetail(element.id)"
           >
             <v-fade-transition>
-              <v-overlay
-                v-if="hover"
-                absolute
-              ></v-overlay>
+              <v-overlay v-if="hover" absolute></v-overlay>
             </v-fade-transition>
 
             <span class="d-block text-center text-caption text-uppercase">
               #{{ element.id }} {{ element.name }}
-              <v-icon
-                v-if="element.is_baby"
-                small
-                color="primary"
-              >mdi-baby-carriage</v-icon>
+              <v-icon v-if="element.is_baby" small color="primary">
+                mdi-baby-carriage
+              </v-icon>
             </span>
 
             <PokemonImage :id="element.id" size="96" />
@@ -55,20 +47,20 @@ export default {
 
   computed: {
     evolves() {
-        const baseURL = process.env.VUE_APP_API || "";
-        const pattern = `${baseURL}/pokemon-species/`;
-        let element = this.evolution;
-        let array = [];
+      const baseURL = process.env.VUE_APP_API || "";
+      const pattern = `${baseURL}/pokemon-species/`;
+      let element = this.evolution;
+      let array = [];
 
-        while(element) {
-          array.push({
-            is_baby: element.is_baby,
-            name: element.species.name,
-            id: element.species.url.replace(/\/$/i, "").replace(pattern, ""),
-          });
-          element = element.evolves_to[0];
-        }
-        return array;
+      while (element) {
+        array.push({
+          is_baby: element.is_baby,
+          name: element.species.name,
+          id: element.species.url.replace(/\/$/i, "").replace(pattern, ""),
+        });
+        element = element.evolves_to[0];
+      }
+      return array;
     },
   },
 
@@ -78,6 +70,5 @@ export default {
       await this.$store.dispatch("pokemon/updatePokemon", id);
     },
   },
-
 };
 </script>

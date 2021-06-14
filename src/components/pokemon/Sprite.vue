@@ -4,6 +4,7 @@
       Sprites de face
     </v-card-subtitle>
 
+    <!-- eslint-disable -->
     <v-row no-gutters align="center">
       <v-col cols="6" md="3" sm="3" xs="6">
         <span class="d-block text-center text-caption text-uppercase">Défaut</span>
@@ -51,13 +52,14 @@
         <PokemonImage :url="sprites ? sprites['back_shiny_female'] : ''" size="96" />
       </v-col>
     </v-row>
+    <!-- eslint-enable -->
   </v-card>
 </template>
 
 <style scoped>
-  .image {
-    width: 150px;
-  }
+.image {
+  width: 150px;
+}
 </style>
 
 <script>

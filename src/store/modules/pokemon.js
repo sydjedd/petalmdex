@@ -12,31 +12,27 @@ export default {
   },
 
   getters: {
-    pokemonList (state) {
-      const start = 0 + ((state.page - 1) * state.limit);
+    pokemonList(state) {
+      const start = 0 + (state.page - 1) * state.limit;
       const end = start + state.limit;
       return state.pokemonList
         .filter(
-          pokemon =>
-               pokemon.id.indexOf(state.filter) !== -1
-            || pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !== -1
+          (pokemon) =>
+            pokemon.id.indexOf(state.filter) !== -1 ||
+            pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !==
+              -1
         )
-        .slice(start, end)
-      ;
+        .slice(start, end);
     },
-    pokemon (state) {
+    pokemon(state) {
       return state.pokemon;
     },
-    totalPages (state) {
-      const length =
-        state.pokemonList
-          .filter(
-            pokemon =>
-                pokemon.id.indexOf(state.filter) !== -1
-              || pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !== -1
-          )
-          .length
-        ;
+    totalPages(state) {
+      const length = state.pokemonList.filter(
+        (pokemon) =>
+          pokemon.id.indexOf(state.filter) !== -1 ||
+          pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !== -1
+      ).length;
       return Math.ceil(length / state.limit);
     },
   },
@@ -52,7 +48,7 @@ export default {
     },
     SET_FILTER(state, newValue) {
       state.page = 1;
-      state.filter = newValue || '';
+      state.filter = newValue || "";
       localStorage.setItem("filter", state.filter);
     },
     SET_PAGE(state, newValue) {
@@ -69,28 +65,32 @@ export default {
   },
 
   actions: {
-    async updatePokemonList ({ state, commit }) {
+    async updatePokemonList({ state, commit }) {
       if (!state.pokemonList.length) {
         const data = await pokemonService.getAll();
-        if (!data) { return false; }
+        if (!data) {
+          return false;
+        }
         commit("UPDATE_POKEMON_LIST", data);
       }
     },
-    async updatePokemon ({ commit }, id) {
+    async updatePokemon({ commit }, id) {
       const data = await pokemonService.getById(id);
-      if (!data) { return false; }
+      if (!data) {
+        return false;
+      }
       commit("UPDATE_POKEMON", data);
     },
-    async removePokemon ({ commit }) {
+    async removePokemon({ commit }) {
       commit("UPDATE_POKEMON", {});
     },
-    async setFilter ({ commit }, newValue) {
+    async setFilter({ commit }, newValue) {
       commit("SET_FILTER", newValue);
     },
-    async setPage ({ commit }, newValue) {
+    async setPage({ commit }, newValue) {
       commit("SET_PAGE", newValue);
     },
-    async setLimit ({ commit }, newValue) {
+    async setLimit({ commit }, newValue) {
       commit("SET_LIMIT", newValue);
     },
   },

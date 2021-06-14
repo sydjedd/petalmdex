@@ -11,10 +11,9 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    // TODO gerer logout
     /* eslint-disable prettier/prettier */
     { path: "/pokemon", name: "Liste des Pokémons", component: PokemonList, meta: {}, },
-    { path: '/pokemon/:id', name: 'Pokémon détail', component: Pokemon, meta: {} },
+    { path: "/pokemon/:id", name: 'Pokémon détail', component: Pokemon, meta: {} },
     { path: "*", name: "Redirection accueil", redirect: "/pokemon", meta: {}, },
     /* eslint-enable prettier/prettier */
   ],

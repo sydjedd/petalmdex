@@ -5,7 +5,7 @@ const baseURL = process.env.VUE_APP_API || "";
 async function getAll() {
   const pokemon = await http.get(`${baseURL}/pokemon?limit=-1`);
   const pattern = `${baseURL}/pokemon/`;
-  pokemon.results.forEach(element => {
+  pokemon.results.forEach((element) => {
     element.id = element.url.replace(/\/$/i, "").replace(pattern, "");
   });
   return pokemon.results;

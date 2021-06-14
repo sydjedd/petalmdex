@@ -14,7 +14,9 @@
         <template v-slot:default>
           <tbody>
             <tr v-for="(element, index) in statistique" :key="index">
-              <th class="text-right" width="130">{{ ref[element.stat.name].label }}</th>
+              <th class="text-right" width="130">
+                {{ ref[element.stat.name].label }}
+              </th>
               <td>
                 <v-progress-linear
                   :value="element.base_stat"
@@ -22,7 +24,9 @@
                   height="15"
                   rounded
                 >
-                  <span class="white--text d-block">{{ element.base_stat }}</span>
+                  <span class="white--text d-block">
+                    {{ element.base_stat }}
+                  </span>
                 </v-progress-linear>
               </td>
             </tr>
@@ -41,15 +45,15 @@ export default {
   data() {
     return {
       ref: {
-        "hp": {
+        hp: {
           color: "blue",
           label: "Vie",
         },
-        "attack": {
+        attack: {
           color: "red",
           label: "Attaque",
         },
-        "defense": {
+        defense: {
           color: "green",
           label: "Défense",
         },
@@ -61,12 +65,12 @@ export default {
           color: "deep-orange",
           label: "Défense spéciale",
         },
-        "speed": {
+        speed: {
           color: "yellow",
           label: "Vitesse",
         },
       },
-    }
+    };
   },
 
   props: {
