@@ -79,6 +79,9 @@ export default {
       state.limit = newValue || 1;
       localStorage.setItem("limit", state.limit);
     },
+    SET_POKEMON_LOADING(state, newValue) {
+      state.pokemonLoading = newValue || false;
+    },
   },
 
   actions: {
@@ -91,10 +94,10 @@ export default {
         commit("UPDATE_POKEMON_LIST", data);
       }
     },
-    async updatePokemon({ state, commit }, id) {
-      state.pokemonLoading = true;
+    async updatePokemon({ commit }, id) {
+      this.dispatch("pokemon/setPokemonLoading", true);
       const data = await pokemonService.getById(id);
-      state.pokemonLoading = false;
+      this.dispatch("pokemon/setPokemonLoading", false);
       if (!data) {
         return false;
       }
@@ -111,6 +114,9 @@ export default {
     },
     async setLimit({ commit }, newValue) {
       commit("SET_LIMIT", newValue);
+    },
+    async setPokemonLoading({ commit }, newValue) {
+      commit("SET_POKEMON_LOADING", newValue);
     },
   },
 };
