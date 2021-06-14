@@ -12,7 +12,23 @@
 
       <v-spacer></v-spacer>
 
-      <!-- {{ ( ( page - 1 ) * limit ) + 1 }} à {{ page * totalPages }} sur  Pokémons -->
+      <div class="text-center">
+        <span>
+          {{ (page - 1) * limit + 1 }} à
+          {{
+            page * limit > pokemonListFilter.length
+              ? pokemonListFilter.length
+              : page * limit
+          }}
+          sur {{ pokemonListFilter.length }} Pokémons
+        </span>
+
+        <br />
+
+        <span v-if="pokemonListFilter.length < pokemonList.length">
+          filtrés sur {{ pokemonList.length }}
+        </span>
+      </div>
 
       <v-spacer></v-spacer>
 
@@ -24,7 +40,7 @@
     </v-toolbar>
 
     <v-progress-linear
-      v-if="this.$store.state.pokemon.pokemonList.length <= 0"
+      v-if="pokemonList.length <= 0"
       indeterminate
       rounded
       height="4"
@@ -32,10 +48,7 @@
     ></v-progress-linear>
 
     <v-alert
-      v-if="
-        pokemonList.length <= 0 &&
-        this.$store.state.pokemon.pokemonList.length > 0
-      "
+      v-if="pokemonListFilterSlice.length <= 0 && pokemonList.length > 0"
       dense
       border="left"
       type="info"
@@ -51,7 +64,7 @@
       align="center"
       justify="center"
     >
-      <v-col v-for="pokemon in pokemonList" :key="pokemon.id">
+      <v-col v-for="pokemon in pokemonListFilterSlice" :key="pokemon.id">
         <v-hover v-slot="{ hover }">
           <v-card
             :elevation="hover ? 24 : 2"
@@ -95,7 +108,12 @@ export default {
   },
 
   computed: {
-    ...mapGetters("pokemon", ["pokemonList", "totalPages"]),
+    ...mapGetters("pokemon", [
+      "pokemonList",
+      "pokemonListFilter",
+      "pokemonListFilterSlice",
+      "totalPages",
+    ]),
     /* eslint-disable */
     filter: {
       get() { return this.$store.state.pokemon.filter; },

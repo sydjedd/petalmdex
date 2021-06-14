@@ -13,6 +13,16 @@ export default {
 
   getters: {
     pokemonList(state) {
+      return state.pokemonList;
+    },
+    pokemonListFilter(state) {
+      return state.pokemonList.filter(
+        (pokemon) =>
+          pokemon.id.indexOf(state.filter) !== -1 ||
+          pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !== -1
+      );
+    },
+    pokemonListFilterSlice(state) {
       const start = 0 + (state.page - 1) * state.limit;
       const end = start + state.limit;
       return state.pokemonList
@@ -28,12 +38,14 @@ export default {
       return state.pokemon;
     },
     totalPages(state) {
-      const length = state.pokemonList.filter(
-        (pokemon) =>
-          pokemon.id.indexOf(state.filter) !== -1 ||
-          pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !== -1
-      ).length;
-      return Math.ceil(length / state.limit);
+      return Math.ceil(
+        state.pokemonList.filter(
+          (pokemon) =>
+            pokemon.id.indexOf(state.filter) !== -1 ||
+            pokemon.name.toLowerCase().indexOf(state.filter.toLowerCase()) !==
+              -1
+        ).length / state.limit
+      );
     },
   },
 
