@@ -1,5 +1,5 @@
 <template>
-  <v-card height="410" min-width="260">
+  <v-card :loading="loading" height="410" min-width="260">
     <v-card-subtitle class="text-uppercase text-center d-block">
       Statistiques
     </v-card-subtitle>
@@ -74,6 +74,7 @@ export default {
   },
 
   props: {
+    loading: Boolean,
     statistique: Array,
   },
 };

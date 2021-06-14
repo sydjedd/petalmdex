@@ -1,11 +1,17 @@
 <template>
   <v-row>
     <v-col cols="12" md="4" sm="12" xs="12">
-      <Profil :id="pokemon.id" :name="pokemon.name" :types="pokemon.types" />
+      <Profil
+        :loading="pokemonLoading"
+        :id="pokemon.id"
+        :name="pokemon.name"
+        :types="pokemon.types"
+      />
     </v-col>
 
     <v-col cols="12" md="4" sm="6" xs="12">
       <Information
+        :loading="pokemonLoading"
         :id="pokemon.id"
         :name="pokemon.name"
         :height="pokemon.height"
@@ -17,19 +23,19 @@
     </v-col>
 
     <v-col cols="12" md="4" sm="6" xs="12">
-      <Statistique :statistique="pokemon.stats" />
+      <Statistique :loading="pokemonLoading" :statistique="pokemon.stats" />
     </v-col>
 
     <v-col cols="12">
-      <Evolution :evolution="pokemon.evolution" />
+      <Evolution :loading="pokemonLoading" :evolution="pokemon.evolution" />
     </v-col>
 
     <v-col cols="12">
-      <Attaque :moves="pokemon.moves" />
+      <Attaque :loading="pokemonLoading" :moves="pokemon.moves" />
     </v-col>
 
     <v-col cols="12">
-      <Sprite :sprites="pokemon.sprites" />
+      <Sprite :loading="pokemonLoading" :sprites="pokemon.sprites" />
     </v-col>
   </v-row>
 </template>
@@ -56,7 +62,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters("pokemon", ["pokemon"]),
+    ...mapGetters("pokemon", ["pokemon", "pokemonLoading"]),
   },
 
   async created() {

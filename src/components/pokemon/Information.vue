@@ -1,5 +1,5 @@
 <template>
-  <v-card height="410" min-width="260">
+  <v-card :loading="loading" height="410" min-width="260">
     <v-card-subtitle class="text-uppercase text-center d-block">
       Informations
     </v-card-subtitle>
@@ -57,6 +57,7 @@ export default {
   name: "Information",
 
   props: {
+    loading: Boolean,
     id: Number,
     name: String,
     height: Number,

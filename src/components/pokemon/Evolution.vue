@@ -1,5 +1,5 @@
 <template>
-  <v-card min-height="200" min-width="260">
+  <v-card :loading="loading" min-height="200" min-width="260">
     <v-card-subtitle class="text-uppercase text-center d-block">
       Evolutions
     </v-card-subtitle>
@@ -70,6 +70,7 @@ export default {
   },
 
   props: {
+    loading: Boolean,
     evolution: Object,
   },
 

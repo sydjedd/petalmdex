@@ -1,5 +1,5 @@
 <template>
-  <v-card height="410" min-width="260">
+  <v-card :loading="loading" height="410" min-width="260">
     <v-skeleton-loader
       v-if="!id"
       type="list-item, image, list-item@3"
@@ -41,6 +41,7 @@ export default {
   },
 
   props: {
+    loading: Boolean,
     id: Number,
     name: String,
     types: Array,

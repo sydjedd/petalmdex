@@ -6,6 +6,7 @@ export default {
   state: {
     pokemonList: [],
     pokemon: {},
+    pokemonLoading: false,
     filter: localStorage.getItem("filter") || "",
     page: Number(localStorage.getItem("page")) || 1,
     limit: Number(localStorage.getItem("limit")) || 1,
@@ -37,6 +38,9 @@ export default {
     },
     pokemon(state) {
       return state.pokemon;
+    },
+    pokemonLoading(state) {
+      return state.pokemonLoading;
     },
     totalPages(state) {
       return Math.ceil(
@@ -87,8 +91,10 @@ export default {
         commit("UPDATE_POKEMON_LIST", data);
       }
     },
-    async updatePokemon({ commit }, id) {
+    async updatePokemon({ state, commit }, id) {
+      state.pokemonLoading = true;
       const data = await pokemonService.getById(id);
+      state.pokemonLoading = false;
       if (!data) {
         return false;
       }

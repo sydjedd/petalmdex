@@ -1,5 +1,5 @@
 <template>
-  <v-card min-width="260">
+  <v-card :loading="loading" min-width="260">
     <v-card-subtitle class="text-uppercase text-center d-block">
       Attaques
     </v-card-subtitle>
@@ -32,6 +32,7 @@ export default {
 
   // TODO Affichage en tableau plus couleur
   props: {
+    loading: Boolean,
     moves: Array,
   },
 };

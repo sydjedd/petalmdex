@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pb-4">
+  <v-card :loading="loading" class="pb-4">
     <v-card-subtitle class="text-uppercase text-center d-block">
       Sprites de face
     </v-card-subtitle>
@@ -67,6 +67,7 @@ export default {
   },
 
   props: {
+    loading: Boolean,
     sprites: Object,
   },
 };
