@@ -5,6 +5,11 @@
     </v-card-subtitle>
 
     <v-card-text>
+      <v-skeleton-loader
+        v-if="!moves || !moves.length"
+        type="table-row@6"
+      ></v-skeleton-loader>
+
       <v-row>
         <v-col
           v-for="(element, index) in moves"
