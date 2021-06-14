@@ -5,27 +5,43 @@
     </v-card-subtitle>
 
     <v-row>
-      <v-col v-for="(element, index) in evolves" :key="index">
-        <v-hover v-slot="{ hover }">
-          <v-card
-            absolute
-            elevation="0"
-            @click.stop="pokemonDetail(element.id)"
-          >
-            <v-fade-transition>
-              <v-overlay v-if="hover" absolute></v-overlay>
-            </v-fade-transition>
+      <v-col
+        class="text-center"
+        v-for="(element, index) in evolves"
+        :key="index"
+      >
+        <div class="d-inline-block">
+          <div class="text-center text-caption text-uppercase">
+            #{{ element.id }} {{ element.name }}
+          </div>
 
-            <span class="d-block text-center text-caption text-uppercase">
-              #{{ element.id }} {{ element.name }}
-              <v-icon v-if="element.is_baby" small color="primary">
-                mdi-baby-carriage
-              </v-icon>
-            </span>
+          <v-hover v-slot="{ hover }">
+            <v-badge
+              color="primary"
+              icon="mdi-baby-carriage"
+              offset-x="30"
+              offset-y="30"
+              :value="element.is_baby"
+            >
+              <v-avatar size="120" @click.stop="pokemonDetail(element.id)">
+                <v-fade-transition>
+                  <v-overlay v-if="hover" absolute></v-overlay>
+                </v-fade-transition>
 
-            <PokemonImage :id="element.id" size="96" />
-          </v-card>
-        </v-hover>
+                <PokemonImage :id="element.id" size="96" />
+              </v-avatar>
+            </v-badge>
+          </v-hover>
+        </div>
+
+        <v-icon
+          class="d-inline-block float-right py-12"
+          v-if="index < evolves.length - 1"
+          large
+          color="primary"
+        >
+          mdi-arrow-right-thin-circle-outline
+        </v-icon>
       </v-col>
     </v-row>
   </v-card>
