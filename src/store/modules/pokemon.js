@@ -8,6 +8,7 @@ export default {
     //pokemon: JSON.parse(localStorage.getItem("pokemon") || "[]"),
     pokemon: [],
     pokemonCurrent: localStorage.getItem("pokemonCurrent") || null,
+    // TODO Sortir le loading du store, rien à faire ici
     pokemonLoading: false,
     filter: localStorage.getItem("filter") || "",
     page: Number(localStorage.getItem("page")) || 1,
