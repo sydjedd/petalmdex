@@ -103,8 +103,8 @@ export default {
         commit("UPDATE_POKEMON", data);
       }
     },
-    async updatePokemonDetail({ state, commit }, id) {
-      this.dispatch("pokemon/setPokemonLoading", true);
+    async updatePokemonDetail({ state, commit, dispatch }, id) {
+      dispatch("pokemon/setPokemonLoading", true);
       await commit("UPDATE_POKEMON_CURRENT", id);
       if (!Object.keys(state.pokemon[id].detail).length) {
         const data = await pokemonService.getById(id);
@@ -113,7 +113,7 @@ export default {
         }
         commit("UPDATE_POKEMON_DETAIL", data);
       }
-      this.dispatch("pokemon/setPokemonLoading", false);
+      dispatch("pokemon/setPokemonLoading", false);
     },
     async setPokemonLoading({ commit }, newValue) {
       commit("SET_POKEMON_LOADING", newValue);

@@ -1,6 +1,6 @@
-# PetalMDex
+# PokéDex
 
-PokéDex pour PetalMD
+PokéDex
 
 ## Pré-requis
 
@@ -15,6 +15,14 @@ git clone https://github.com/sydjedd/petalmdex.git
 cd petalmdex
 ```
 ## Installation
+
+### Créer le fichier dotenv (.env)
+
+```dotenv
+VUE_APP_NAME=Pokedex
+VUE_APP_DESCRIPTION=Pokedex exploitant l'API https://pokeapi.co
+VUE_APP_API=https://pokeapi.co/api/v2
+```
 
 ### Installer les dépendances
 
